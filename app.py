@@ -1,76 +1,76 @@
 
-# import requests
-# import csv
-# from bs4 import BeautifulSoup
-# import pandas as pd
+import requests
+import csv
+from bs4 import BeautifulSoup
+import pandas as pd
 
-# # List to store course data
-# courses = []
+# List to store course data
+courses = []
 
-# # Define the base URL for the courses
-# base_url = 'https://courses.analyticsvidhya.com'
+# Define the base URL for the courses
+base_url = 'https://courses.analyticsvidhya.com'
 
-# # Start with the first page of courses
-# pages = [
-#     base_url + '/courses',  # Page 1
-#     base_url + '/collections?page=2',  # Page 2
-#     base_url + '/collections?page=3',  # Page 3
-#     base_url + '/collections?page=4',  # Page 4
-#     base_url + '/collections?page=5',  # Page 5
-#     base_url + '/collections?page=6',  # Page 6
-#     base_url + '/collections?page=7',  # Page 7
-#     base_url + '/collections?page=8',  # Page 8
-# ]
+# Start with the first page of courses
+pages = [
+    base_url + '/courses',  # Page 1
+    base_url + '/collections?page=2',  # Page 2
+    base_url + '/collections?page=3',  # Page 3
+    base_url + '/collections?page=4',  # Page 4
+    base_url + '/collections?page=5',  # Page 5
+    base_url + '/collections?page=6',  # Page 6
+    base_url + '/collections?page=7',  # Page 7
+    base_url + '/collections?page=8',  # Page 8
+]
 
-# # Loop through each page in the list
-# for current_page_url in pages:
-#     print(f"Fetching courses from: {current_page_url}...")
+# Loop through each page in the list
+for current_page_url in pages:
+    print(f"Fetching courses from: {current_page_url}...")
     
-#     # Fetch the current page
-#     page = requests.get(current_page_url)
-#     soup = BeautifulSoup(page.text, 'html.parser')
+    # Fetch the current page
+    page = requests.get(current_page_url)
+    soup = BeautifulSoup(page.text, 'html.parser')
 
-#     # Extracting course title, image, and course link from the current page
-#     for course_card in soup.find_all('header', class_='course-card__img-container'):
-#         img_tag = course_card.find('img', class_='course-card__img')
+    # Extracting course title, image, and course link from the current page
+    for course_card in soup.find_all('header', class_='course-card__img-container'):
+        img_tag = course_card.find('img', class_='course-card__img')
         
-#         if img_tag:
-#             title = img_tag.get('alt')
-#             image_url = img_tag.get('src')
+        if img_tag:
+            title = img_tag.get('alt')
+            image_url = img_tag.get('src')
             
-#             link_tag = course_card.find_previous('a')
-#             if link_tag:
-#                 course_link = link_tag.get('href')
-#                 if not course_link.startswith('http'):
-#                     course_link = base_url + course_link
+            link_tag = course_card.find_previous('a')
+            if link_tag:
+                course_link = link_tag.get('href')
+                if not course_link.startswith('http'):
+                    course_link = base_url + course_link
 
-#                 # Sending a request to the individual course page to get the description
-#                 course_page = requests.get(course_link)
-#                 course_soup = BeautifulSoup(course_page.text, 'html.parser')
-#                 # Extracting the course description from the individual course page
-#                 fr_view = course_soup.find('div', class_='fr-view')
+                # Sending a request to the individual course page to get the description
+                course_page = requests.get(course_link)
+                course_soup = BeautifulSoup(course_page.text, 'html.parser')
+                # Extracting the course description from the individual course page
+                fr_view = course_soup.find('div', class_='fr-view')
 
-#                 if fr_view:
-#                     description_paragraph = fr_view.find('p')
-#                     if description_paragraph:
-#                         description = description_paragraph.text.strip()
-#                     else:
-#                         description = 'No description available'
-#                 else:
-#                     description = 'No description available'
+                if fr_view:
+                    description_paragraph = fr_view.find('p')
+                    if description_paragraph:
+                        description = description_paragraph.text.strip()
+                    else:
+                        description = 'No description available'
+                else:
+                    description = 'No description available'
 
-#                 # Storing course details
-#                 courses.append({
-#                     'title': title,
-#                     'image_url': image_url,
-#                     'course_link': course_link,
-#                     'description': description
-#                 })
+                # Storing course details
+                courses.append({
+                    'title': title,
+                    'image_url': image_url,
+                    'course_link': course_link,
+                    'description': description
+                })
 
-# # Save to a DataFrame
-# df = pd.DataFrame(courses)
-# df.to_csv("courses2.csv", index=False)
-# print("Course data saved to courses.csv")
+# Save to a DataFrame
+df = pd.DataFrame(courses)
+df.to_csv("courses2.csv", index=False)
+print("Course data saved to courses.csv")
 
 
 import pandas as pd
