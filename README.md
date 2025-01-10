@@ -11,5 +11,6 @@ Search Without spelling mistake:
 
 ![Screenshot 2025-01-10 044012](https://github.com/user-attachments/assets/4bd46f00-e0ed-4825-9aff-e480cf928c1e)
 
-
+Deployed Huggingface url:
+https://huggingface.co/spaces/riyagupta0238/smart-search-tool
 
