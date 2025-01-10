@@ -1,0 +1,10 @@
+transformers
+torch
+gradio
+langchain
+sentence-transformers
+scikit-learn
+numpy
+pandas
+langchain-community
+beautifulsoup4
