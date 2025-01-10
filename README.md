@@ -9,4 +9,7 @@ Web Page with Relevant Courses with spelling mistake of Analytics Vidhya:
 Search Without spelling mistake:
 ![Screenshot 2025-01-10 043016](https://github.com/user-attachments/assets/b4e11b40-9b05-4fa7-8ce2-6135c7fcc2b3)
 
+![Screenshot 2025-01-10 044012](https://github.com/user-attachments/assets/4bd46f00-e0ed-4825-9aff-e480cf928c1e)
+
+
 
